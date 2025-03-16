@@ -18,7 +18,7 @@ class Race(models.Model):
         return self.race_name
 
 
-class Players(models.Model):
+class Player(models.Model):
     player_name = models.CharField(max_length=100)
     player_email = models.EmailField()
     password = models.CharField(max_length=256)
@@ -27,9 +27,9 @@ class Players(models.Model):
         return self.player_name
 
 
-class Predictions(models.Model):
+class Prediction(models.Model):
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
-    player = models.ForeignKey(Players, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
     player_prediction1 = models.TextField()
     player_prediction2 = models.TextField()
     player_prediction3 = models.TextField()
@@ -38,7 +38,7 @@ class Predictions(models.Model):
         return self.player.player_name
 
 
-class RaceFinishers(models.Model):
+class RaceFinisher(models.Model):
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
     place1 = models.TextField()
     place2 = models.TextField()
@@ -55,18 +55,18 @@ class RaceFinishers(models.Model):
         return self.race.race_name
 
 
-class SeasonScores(models.Model):
+class SeasonScore(models.Model):
     season = models.ForeignKey(RaceSeason, on_delete=models.CASCADE)
-    player = models.ForeignKey(Players, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score = models.IntegerField()
 
     def __str__(self):
         return self.player.player_name + " " + str(self.score)
 
 
-class RaceScores(models.Model):
+class RaceScore(models.Model):
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
-    player = models.ForeignKey(Players, on_delete=models.CASCADE)
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score = models.IntegerField()
 
     def __str__(self):

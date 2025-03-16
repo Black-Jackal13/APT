@@ -4,8 +4,8 @@ from .models import *
 # Register your models here.
 admin.site.register(RaceSeason)
 admin.site.register(Race)
-admin.site.register(Players)
-admin.site.register(Predictions)
-admin.site.register(RaceFinishers)
-admin.site.register(SeasonScores)
-admin.site.register(RaceScores)
+admin.site.register(Player)
+admin.site.register(Prediction)
+admin.site.register(RaceFinisher)
+admin.site.register(SeasonScore)
+admin.site.register(RaceScore)

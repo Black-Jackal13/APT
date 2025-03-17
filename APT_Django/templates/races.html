@@ -2,5 +2,28 @@
 
 {% block content %}
     <h1>Race List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Info</th>
+        <tbody>
+        {% for race in races %}
+            <tr>
+                <!-- Race Details -->
+                <td>{{ race.race_name }}</td>
+                <td>{{ race.race_date }}</td>
 
+                <!-- Scores or Prediction Link -->
+                {% if race.finished %}
+                    <td><a href="http://localhost:8080/results/{{ race.name }}">Results</a></td>
+                {% else %}
+                    <td><a href="http://localhost:8080/predictions/predict/{{ race.name }}">Prediction</a></td>
+                {% endif %}
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

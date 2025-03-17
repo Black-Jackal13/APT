@@ -10,7 +10,8 @@ def index(request):
 
 def races(request):
     page = loader.get_template("races.html")
-    return HttpResponse(page.render())
+    races_data = Race.objects.all()
+    return HttpResponse(page.render({"races": races_data}))
 
 
 def available_predictions(request):

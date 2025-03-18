@@ -17,9 +17,9 @@
 
                 <!-- Scores or Prediction Link -->
                 {% if race.finished %}
-                    <td><a href="http://localhost:8080/results/{{ race.name }}">Results</a></td>
+                    <td><a href="/results/{{ race.race_name }}">Results</a></td>
                 {% else %}
-                    <td><a href="http://localhost:8080/predictions/predict/{{ race.name }}">Prediction</a></td>
+                    <td><a href="/predictions/predict/{{ race.race_name }}">Prediction</a></td>
                 {% endif %}
 
             </tr>

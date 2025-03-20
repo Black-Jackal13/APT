@@ -18,7 +18,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 /* Buttons */
@@ -78,4 +78,21 @@ table, th, td {
 
 .login_bar button:hover {
     color: #e74c3c;
+}
+
+
+/* Container */
+.form_container {
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    width: 15%;
+}
+
+.form_container input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid rgba(244, 244, 244, 0.27);
 }

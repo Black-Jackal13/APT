@@ -1,0 +1,22 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+    <h1>Predict for "{{ season }}" - "{{ race }}"</h1>
+    <div class="form_container">
+        <form action="/predictions/predict/{{ season }}/{{ race }}" method="POST">
+            <label>Email</label><br>
+            {{ form.player_email }}<br>
+
+            <label>First</label><br>
+            {{ form.prediction_1 }}<br>
+
+            <label>Second</label><br>
+            {{ form.prediction_2 }}<br>
+
+            <label>Third</label><br>
+            {{ form.prediction_3 }}<br>
+
+            <button type="submit">Submit Predictions</button>
+        </form>
+    </div>
+{% endblock %}

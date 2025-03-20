@@ -3,6 +3,7 @@ from django.db import models
 
 class RaceSeason(models.Model):
     race_season_name = models.CharField(max_length=100)
+    ongoing = models.BooleanField(default=True)
 
     def __str__(self):
         return self.race_season_name

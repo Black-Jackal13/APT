@@ -22,7 +22,6 @@ class Race(models.Model):
 class Player(models.Model):
     player_name = models.CharField(max_length=100)
     player_email = models.EmailField()
-    password = models.CharField(max_length=256)
 
     def __str__(self):
         return self.player_name

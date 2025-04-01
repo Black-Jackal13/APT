@@ -1,0 +1,36 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+    <h1>Player - "{{ player.player_name }}"</h1>
+    <table>
+        <tbody>
+        <tr>
+            <td>Email</td>
+            <td>{{ player.player_email }}</td>
+        </tr>
+        <tr>
+            <td>Score</td>
+            <td style="text-align: right">{{ score }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <h2>Predictions</h2>
+    {% if not predictions %}
+        No predictions found.
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>Race</th>
+                <th>First</th>
+                <th>Second</th>
+                <th>Third</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            {% for prediction in predictions %}
+                <li>{{ prediction.prediction_1 }} - {{ prediction.prediction_2 }}</li>
+            {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

@@ -5,7 +5,14 @@ from django.template import loader
 # Create your views here.
 def index(request):
     page = loader.get_template("index.html")
-    return HttpResponse(page.render())
+    upcoming_races = Race.objects.order_by("race_date").filter(race_finished=False)[:5]
+    past_races = Race.objects.order_by("-race_date").filter(race_finished=True)[:5]
+    top_5_players = SeasonScore.objects.order_by("-score")[:5]
+    return HttpResponse(page.render({
+        "upcoming_races": upcoming_races,
+        "leaders": top_5_players,
+        "past_races": past_races,
+    }))
 
 
 def races(request):

@@ -1,5 +1,49 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-    <p>Home</p>
+    <h1>International Predictioneers Cup</h1>
+    <h2>Leaders</h2>
+    {% if not leaders %}
+        No leaders found.
+    {% else %}
+        <div class="scoreboard-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>Player</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for leader in leaders %}
+                    <tr>
+                        <td class="scoreboard-playername">{{ leader.player.player_name }}</td>
+                        <td>{{ leader.score }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+    <h2>Upcoming Races</h2>
+    {% if not upcoming_races %}
+        No upcoming races found.
+    {% else %}
+        <ul>
+            {% for race in upcoming_races %}
+                <li><a href="/predictions/predict/{{ race.race_season }}/{{ race.race_name }}"
+                       target="_blank">{{ race.race_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2>Past Races</h2>
+    {% if not past_races %}
+        No past races found.
+    {% else %}
+        <ul>
+            {% for race in past_races %}
+                <li><a href="/results/race/{{ race.race_season }}/{{ race.race_name }}">{{ race.race_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

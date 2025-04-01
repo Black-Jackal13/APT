@@ -4,8 +4,8 @@
     <h1>Predict for "{{ season }}" - "{{ race }}"</h1>
     <div class="form_container">
         <form action="/predictions/predict/{{ season }}/{{ race }}" method="POST">
-            <label>Email</label><br>
-            {{ form.player_email }}<br>
+            <label>Name</label><br>
+            {{ form.player_name }}<br>
 
             <label>First</label><br>
             {{ form.prediction_1 }}<br>

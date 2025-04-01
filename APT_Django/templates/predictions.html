@@ -1,4 +1,35 @@
 {% extends "base_template.html" %}
 {% block content %}
     <h1>Predictions</h1>
+
+    <!-- Predictions -->
+    <h2>Upcoming Races</h2>
+    {% if not races %}
+        No races found.
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>Race</th>
+                <th>Date</th>
+                <th>Prediction Link</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for race in races %}
+                {% if not race.race_finished %}
+                    <tr>
+                        <!-- Race Details -->
+                        <td>{{ race.race_name }}</td>
+                        <td>{{ race.race_date }}</td>
+                        <td>
+                            <a href="/predictions/predict/{{ race.race_season }}/{{ race.race_name }}"
+                            target="_blank">{{ race.race_name }}</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}

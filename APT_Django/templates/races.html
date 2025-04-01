@@ -4,10 +4,10 @@
     <h1>Race List</h1>
     <table>
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Info</th>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Info</th>
         <tbody>
         {% for race in races %}
             <tr>
@@ -16,10 +16,10 @@
                 <td>{{ race.race_date }}</td>
 
                 <!-- Scores or Prediction Link -->
-                {% if race.finished %}
-                    <td><a href="/results/{{ race.race_name }}">Results</a></td>
+                {% if race.race_finished %}
+                    <td><a href="/results/race/{{ race.race_season }}/{{ race.race_name }}">Results</a></td>
                 {% else %}
-                    <td><a href="/predictions/predict/{{ race.race_name }}">Prediction</a></td>
+                    <td><a href="/predictions/predict/{{ race.race_season }}/{{ race.race_name }}" target="_blank">Prediction</a></td>
                 {% endif %}
 
             </tr>

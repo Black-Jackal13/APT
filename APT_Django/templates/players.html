@@ -1,0 +1,19 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+    <h1>Players</h1>
+    <button><a href="/register">Register Player</a></button>
+    {% if not players %}
+        No players found.
+    {% else %}
+        <ul>
+            {% for player in players %}
+                <li>
+                    <a href="/players/{{ player.player_name }}">
+                        {{ player.player_name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

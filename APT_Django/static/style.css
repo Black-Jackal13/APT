@@ -53,6 +53,7 @@ h1, h2, h3, h4, h5, h6 {
     color: #f4f4f4;
     font-weight: bold;
     margin-bottom: 10px;
+    font-family: "Verdana", serif;
 }
 
 /* Text Styling */
@@ -95,4 +96,12 @@ table, th, td {
     margin: 5px 0;
     border-radius: 5px;
     border: 1px solid rgba(244, 244, 244, 0.27);
+}
+
+.scoreboard-container {
+    margin: auto;
+}
+
+.scoreboard-playername {
+    width: 200px;
 }

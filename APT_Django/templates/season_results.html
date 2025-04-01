@@ -1,0 +1,45 @@
+{% extends "base_template.html" %}
+{% block content %}
+    <h1>Season Results</h1>
+    <h2>Standings</h2>
+    {% if not standings %}
+        No standings found.
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>Position</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for player in standings %}
+                <tr>
+                    <td>{{ player.position }}</td>
+                    <td>{{ player.player.player_name }}</td>
+                    <td>{{ player.score }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <h2>Races</h2>
+    {% if not races %}
+        No races found.
+    {% else %}
+        <ul>
+            {% for race in races %}
+                {% if race.race_finished %}
+                    <li><a href="/results/race/{{ race.race_season }}/{{ race.race_name }}">
+                        {{ race.race_name }}</a> (Finished)
+                    </li>
+                {% else %}
+                    <li><a href="/predictions/predict/{{ race.race_season }}/{{ race.race_name }}"
+                           target="_blank">{{ race.race_name }}</a> (Not Finished)
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

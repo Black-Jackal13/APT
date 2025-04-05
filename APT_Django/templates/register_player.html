@@ -1,0 +1,19 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+    <h1>Register Player</h1>
+    <p>{{ info }}</p>
+    <div class="form_container">
+        <form action="/register/player" method="POST">
+            <label>Username</label><br>
+            {{ form.username }}<br>
+
+            <label>Email</label><br>
+            {{ form.email }}<br>
+
+            <label>Verify Email</label><br>
+            {{ form.verify_email }}<br>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+{% endblock %}

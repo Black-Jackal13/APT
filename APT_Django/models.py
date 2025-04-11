@@ -13,6 +13,7 @@ class Race(models.Model):
     race_season = models.ForeignKey(RaceSeason, on_delete=models.CASCADE)
     race_name = models.CharField(max_length=100)
     race_date = models.DateField()
+    race_tier = models.IntegerField(default=1)  # 1 is Gold, 2 is Silver, 3 is Bronze
     race_finished = models.BooleanField(default=False)
 
     def __str__(self):

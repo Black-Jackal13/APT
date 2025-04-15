@@ -95,6 +95,11 @@ def scoring_algorithm(
     for player in predicted_finishers:
 
         for index, predicted_finisher in enumerate(predicted_finishers[player]):
+            try:
+                top_three_finishers[index]
+            except IndexError:
+                scores = {player: 0 for player in predicted_finishers.keys()}
+                return scores, [player for player in predicted_finishers.keys()]
 
             # Correct Predictions
             if predicted_finisher == top_three_finishers[index]:

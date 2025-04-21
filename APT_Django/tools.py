@@ -42,7 +42,7 @@ def scoring_algorithm(
         tier: str,  # (GOLD, SILVER or BRONZE)
         predicted_finishers: dict[str, tuple[str, ]],
         top_ten_finishers: list[str]
-) -> tuple[dict[str, int], list[tuple[str, int]]]:
+) -> tuple[dict[str, int], list[tuple[str, int]], bool]:
     """
     Calculate points based on a player's prediction and the top_ten_finishers results.
 
@@ -53,7 +53,8 @@ def scoring_algorithm(
     :param top_ten_finishers: The top_ten_finishers top 3 finishers.
     :type top_ten_finishers: list[str, str, str]
 
-    :return: The total points awarded to the player based on prediction accuracy.
+    :return: The total points awarded to the player based on prediction accuracy, the standings, and a boolean value
+    that will be True if an error was encountered and False otherwise.
     """
     # Point values
     point_values = {
@@ -99,7 +100,7 @@ def scoring_algorithm(
                 top_three_finishers[index]
             except IndexError:
                 scores = {player: 0 for player in predicted_finishers.keys()}
-                return scores, [player for player in predicted_finishers.keys()]
+                return scores, [player for player in predicted_finishers.keys()], True
 
             # Correct Predictions
             if predicted_finisher == top_three_finishers[index]:
@@ -158,4 +159,4 @@ def scoring_algorithm(
             print(f"{player} is a joker!")
             scores[player] += current_values["joker"]
 
-    return scores, standings
+    return scores, standings, False

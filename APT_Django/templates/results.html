@@ -1,5 +1,25 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-    <p>Results and Standings</p>
+    <h1>Results and Standings</h1>
+    <h2>Recent Races</h2>
+    {% if not races %}
+        No races found.
+    {% else %}
+        <ul>
+            {% for race in races %}
+                <li><a href="/results/{{ race.race_season }}/{{ race.race_name }}">{{ race.race_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if not seasons %}
+        No seasons found.
+    {% else %}
+        <h2>Seasons</h2>
+        <ul>
+            {% for season in seasons %}
+                <li><a href="/results/{{ season.race_season_name }}">{{ season.race_season_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}

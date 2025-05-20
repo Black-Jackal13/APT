@@ -9,7 +9,7 @@ class RaceSeason(models.Model):
         return self.race_season_name
 
 
-class RaceCups(models.Model):
+class RaceCup(models.Model):
     cup_name = models.CharField(max_length=100)
     cup_season = models.ForeignKey(RaceSeason, on_delete=models.CASCADE)
     ongoing = models.BooleanField(default=True)
@@ -20,7 +20,7 @@ class RaceCups(models.Model):
 
 class Race(models.Model):
     race_season = models.ForeignKey(RaceSeason, on_delete=models.CASCADE)
-    race_cup = models.ForeignKey(RaceCups, on_delete=models.CASCADE, default=None)
+    race_cup = models.ForeignKey(RaceCup, on_delete=models.CASCADE, default=None)
     race_name = models.CharField(max_length=100)
     race_date = models.DateField()
     race_tier = models.IntegerField(default=1)  # 1 is Gold, 2 is Silver, 3 is Bronze
@@ -77,7 +77,7 @@ class SeasonScore(models.Model):
 
 
 class CupScore(models.Model):
-    cup = models.ForeignKey(RaceCups, on_delete=models.CASCADE)
+    cup = models.ForeignKey(RaceCup, on_delete=models.CASCADE)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score = models.IntegerField()
 

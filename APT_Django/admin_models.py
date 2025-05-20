@@ -1,6 +1,10 @@
 from django.contrib import admin
 
 
+class RaceCupAdmin(admin.ModelAdmin):
+    list_display = ("cup_name", "cup_season")
+
+
 class RaceAdmin(admin.ModelAdmin):
     list_display = ("race_name", "race_season", "race_date")
 
@@ -15,6 +19,10 @@ class PredictionAdmin(admin.ModelAdmin):
 
 class RaceScoreAdmin(admin.ModelAdmin):
     list_display = ("race", "player", "score")
+
+
+class CupScoreAdmin(admin.ModelAdmin):
+    list_display = ("cup", "player", "score")
 
 
 class SeasonScoreAdmin(admin.ModelAdmin):

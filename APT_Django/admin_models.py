@@ -6,7 +6,7 @@ class RaceCupAdmin(admin.ModelAdmin):
 
 
 class RaceAdmin(admin.ModelAdmin):
-    list_display = ("race_name", "race_season", "race_date")
+    list_display = ("race_name", "race_season", "race_cup", "cup_stage", "race_date")
 
 
 class PlayerAdmin(admin.ModelAdmin):

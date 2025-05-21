@@ -6,7 +6,7 @@ def fetch_race_data(race_name: str, race_year: str) -> list[str]:
     """
     Fetches the top ten finishers of a race from the ProcyclingStats website.
 
-    :param race_name: name of the race
+    :param race_name: Name of the race
     :param race_year: year of the specific race
     :return: list of top ten finishers
     """
@@ -47,11 +47,11 @@ def scoring_algorithm(
     Calculate points based on a player's prediction and the top_ten_finishers results.
 
     :param tier: The race tier (GOLD, SILVER, or BRONZE).
-    :type tier: str
+    :type tier: Str
     :param predicted_finishers: Players and their predicted top 3 finishers (first, second, third).
-    :type predicted_finishers: dict[str: tuple[str, str, str]]
+    :type predicted_finishers: Dict[str: tuple[str, str, str]]
     :param top_ten_finishers: The top_ten_finishers top 3 finishers.
-    :type top_ten_finishers: list[str, str, str]
+    :type top_ten_finishers: List[str, str, str]
 
     :return: The total points awarded to the player based on prediction accuracy, the standings, and a boolean value
     that will be True if an error was encountered and False otherwise.

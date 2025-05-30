@@ -2,24 +2,36 @@ import bs4
 import requests
 
 
-def fetch_race_data(race_name: str, race_year: str) -> list[str]:
+def fetch_race_data(race_name: str, stage: str, race_year: str) -> list[str]:
     """
     Fetches the top ten finishers of a race from the ProcyclingStats website.
 
     :param race_name: Name of the race
+    :param stage: race stage (for cups)
     :param race_year: year of the specific race
     :return: list of top ten finishers
     """
+
+    if stage != "0":
+        race_name = race_name.split(" (")[0]
+
     # Get HTML
     website_link = f"https://www.procyclingstats.com/race/{race_name.lower().replace(" ", "-")}/{race_year}"
+    if stage != "0":
+        website_link += f"/stage-{stage}"
+    print(website_link)
     website_soup = bs4.BeautifulSoup(requests.get(website_link).text, "html.parser")
 
     # Narrow Down to Find Table
     website_soup = website_soup.find("body").find("div", {"class": "wrapper"})
     website_soup = website_soup.find("div", {"class": "content"})
     website_soup = website_soup.find("div", {"class": "page-content page-object default"})
-    website_soup = website_soup.find("div", {"class": "w50 left mb_w100 mg_r2"})
-    website_soup = website_soup.find("span", {"class": "table-cont"})
+    website_soup = website_soup.find("div", {"class": "w50 left mb_w100 mg_r2" if stage == "0" else "w68 left mb_w100"})
+    if stage == "0":
+        website_soup = website_soup.find("span", {"class": "table-cont"})
+    else:
+        website_soup = website_soup.find("div", {"class": "result-cont"})
+        website_soup = website_soup.find("div", {"class": "subTabs"})
 
     # Table not there (Not a finished race)
     try:
@@ -29,11 +41,18 @@ def fetch_race_data(race_name: str, race_year: str) -> list[str]:
 
     # Find the Finishers
     top_ten_finishers = []
-    for row in table_body.find_all("tr"):
-        finisher_details = row.find_all("td")
-        finisher_details = [col.text.strip() for col in finisher_details]
-        finisher_lastname = finisher_details[1].split(" ")[0].capitalize()
-        top_ten_finishers.append(finisher_lastname)
+    if stage != "0":
+        for row in table_body.find_all("tr"):
+            finisher_details = row.find_all("td")
+            finisher_details = [col.text.strip() for col in finisher_details]
+            finisher_lastname = finisher_details[6].split(" ")[0].capitalize()
+            top_ten_finishers.append(finisher_lastname)
+    else:
+        for row in table_body.find_all("tr"):
+            finisher_details = row.find_all("td")
+            finisher_details = [col.text.strip() for col in finisher_details]
+            finisher_lastname = finisher_details[1].split(" ")[0].capitalize()
+            top_ten_finishers.append(finisher_lastname)
 
     return top_ten_finishers
 
@@ -105,7 +124,6 @@ def scoring_algorithm(
             # Correct Predictions
             if predicted_finisher == top_three_finishers[index]:
                 scores[player] += current_values["podium"][index]
-
                 # Double Points (more than 6 players)
                 if prediction_frequency[predicted_finisher] <= 2 and len(predicted_finishers.keys()) >= 6:
                     scores[player] += current_values["podium"][index]

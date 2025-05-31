@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Predict for "{{ season }}" - "{{ race }}"</h1>
     <div class="form_container">
-        <form action="/predictions/predict/{{ season }}/{{ race }}" method="POST">
+        <form action="/predictions/predict/{{ season }}/{{ cup }}/{{ race }}" method="POST">
             <label>Name</label><br>
             {{ form.player_name }}<br>
 

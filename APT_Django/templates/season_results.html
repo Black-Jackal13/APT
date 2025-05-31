@@ -1,6 +1,7 @@
 {% extends "base_template.html" %}
 {% block content %}
     <h1>Season Results</h1>
+
     <h2>Standings</h2>
     {% if not standings %}
         No standings found.
@@ -23,6 +24,18 @@
             {% endfor %}
         </table>
     {% endif %}
+
+    <h2>Cups</h2>
+    {% if not cups %}
+        No cups found
+    {% else %}
+        <ul>
+            {% for cup in cups %}
+                <li><a href="/results/{{ cup.cup_season }}/{{ cup.cup_name }}">{{ cup.cup_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <h2>Races</h2>
     {% if not races %}
         No races found.

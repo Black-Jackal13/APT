@@ -17,9 +17,11 @@
 
                 <!-- Scores or Prediction Link -->
                 {% if race.race_finished %}
-                    <td><a href="/results/{{ race.race_season }}/{{ race.race_name }}">Results</a></td>
+                    <td><a href="/results/{{ race.race_season }}/{{ race.race_cup }}/{{ race.race_name }}">
+                        Results</a></td>
                 {% else %}
-                    <td><a href="/predictions/predict/{{ race.race_season }}/{{ race.race_name }}" target="_blank">Prediction</a></td>
+                    <td><a href="/predictions/predict/{{ race.race_season }}/{{ race.race_cup }}/{{ race.race_name }}"
+                           target="_blank">Prediction</a></td>
                 {% endif %}
 
             </tr>

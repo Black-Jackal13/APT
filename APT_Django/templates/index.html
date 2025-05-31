@@ -31,7 +31,7 @@
     {% else %}
         <ul>
             {% for race in upcoming_races %}
-                <li><a href="/predictions/predict/{{ race.race_season }}/{{ race.race_name }}"
+                <li><a href="/predictions/predict/{{ race.race_season }}/{{ race.race_cup }}/{{ race.race_name }}"
                        target="_blank">{{ race.race_name }}</a></li>
             {% endfor %}
         </ul>
@@ -42,7 +42,8 @@
     {% else %}
         <ul>
             {% for race in past_races %}
-                <li><a href="/results/{{ race.race_season }}/{{ race.race_name }}">{{ race.race_name }}</a></li>
+                <li><a href="/results/{{ race.race_season }}/{{ race.race_cup }}/{{ race.race_name }}"
+                >{{ race.race_name }}</a></li>
             {% endfor %}
         </ul>
     {% endif %}

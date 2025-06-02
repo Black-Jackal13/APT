@@ -1,5 +1,6 @@
 import bs4
 import requests
+from APT_Django.models import Player, Race, RaceCup, RaceSeason
 
 
 def fetch_race_data(race_name: str, stage: str, race_year: str) -> list[str]:
@@ -178,3 +179,37 @@ def scoring_algorithm(
             scores[player] += current_values["joker"]
 
     return scores, standings, False
+
+
+def get_cup_total(player: Player, cup: RaceCup):
+    """
+    Get player total score for a specific cup.
+
+    :param player: Player object
+    :param cup: Targeted Cup object
+    :return: total score
+    """
+    score = 0
+
+    races = Race.objects.filter(race_cup=cup).filter(prediction__player=player)
+    for race in races:
+        score += race.racescore_set.get(player=player).score
+
+    return score
+
+
+def get_season_total(player: Player, season: RaceSeason):
+    """
+    Get player total score for a specific season.
+
+    :param player: Player object
+    :param season: Targeted Season object
+    :return: total score
+    """
+    score = 0
+
+    races = Race.objects.filter(race_season=season).filter(prediction__player=player)
+    for race in races:
+        score += race.racescore_set.get(player=player).score
+
+    return score

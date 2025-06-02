@@ -1,21 +1,32 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-    <h1>Predict for "{{ season }}" - "{{ race }}"</h1>
+    <h1>Predict for {{ season }}: {{ cup }} - {{ race }}</h1>
     <div class="form_container">
         <form action="/predictions/predict/{{ season }}/{{ cup }}/{{ race }}" method="POST">
             <label>Name</label><br>
             {{ form.player_name }}<br>
 
             <label>First</label><br>
-            {{ form.prediction_1 }}<br>
+            <select name="prediction_1">
+                {% for racer in racers %}
+                    <option value="{{ racer }}">{{ racer }}</option>
+                {% endfor %}
+            </select><br>
 
             <label>Second</label><br>
-            {{ form.prediction_2 }}<br>
+            <select name="prediction_2">
+                {% for racer in racers %}
+                    <option value="{{ racer }}">{{ racer }}</option>
+                {% endfor %}
+            </select><br>
 
-            <label>Third</label><br>
-            {{ form.prediction_3 }}<br>
-
+            <label>Third<br></label>
+            <select name="prediction_3">
+                {% for racer in racers %}
+                    <option value="{{ racer }}">{{ racer }}</option>
+                {% endfor %}
+            </select><br>
             <button type="submit">Submit Predictions</button>
         </form>
     </div>

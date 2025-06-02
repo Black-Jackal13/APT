@@ -22,7 +22,7 @@ nav {
 }
 
 /* Buttons */
-button {
+button, select, option {
     background: #444;
     color: white;
     border: none;

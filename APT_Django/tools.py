@@ -181,7 +181,7 @@ def scoring_algorithm(
     return scores, standings, False
 
 
-def get_cup_total(player: Player, cup: RaceCup):
+def get_cup_total(player: Player, cup: RaceCup) -> int:
     """
     Get player total score for a specific cup.
 
@@ -198,7 +198,7 @@ def get_cup_total(player: Player, cup: RaceCup):
     return score
 
 
-def get_season_total(player: Player, season: RaceSeason):
+def get_season_total(player: Player, season: RaceSeason) -> int:
     """
     Get player total score for a specific season.
 
@@ -213,3 +213,29 @@ def get_season_total(player: Player, season: RaceSeason):
         score += race.racescore_set.get(player=player).score
 
     return score
+
+
+def player_prediction_history(player: Player) -> dict[str: str | int]:
+    """
+    Get player prediction history for all the finished races they've participated in.
+
+    :param player: Target Player object
+    :type player: Player
+    :return: dictionary with player prediction history
+    """
+    # Participating Races
+    finished_races = Race.objects.filter(prediction__player=player).filter(race_finished=True)
+
+    player_race_details = [
+        {
+            "race": race,
+            "prediction1": race.prediction_set.get(player=player).player_prediction1,
+            "prediction2": race.prediction_set.get(player=player).player_prediction2,
+            "prediction3": race.prediction_set.get(player=player).player_prediction3,
+            "tier": {1: "GOLD", 2: "Silver", 3: "Bronze"}[race.race_tier],
+            "score": race.racescore_set.get(player=player).score,
+        }
+        for race in finished_races
+    ]
+
+    return player_race_details

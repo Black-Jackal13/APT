@@ -215,6 +215,22 @@ def get_season_total(player: Player, season: RaceSeason) -> int:
     return score
 
 
+def get_player_overall_score(player: Player) -> int:
+    """
+    Get alltime score for a specific player.
+
+    :param player: Player object
+    :return: score
+    """
+    score = 0
+
+    races = Race.objects.filter(prediction__player=player)
+    for race in races:
+        score += race.racescore_set.get(player=player).score
+
+    return score
+
+
 def player_prediction_history(player: Player) -> dict[str: str | int]:
     """
     Get player prediction history for all the finished races they've participated in.

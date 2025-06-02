@@ -1,0 +1,18 @@
+{% extends "base_template.html" %}
+{% block content %}
+    <h1>{{ race.race_name }} Predictions</h1>
+    {% if not predictions %}
+        <p>No predictions for this race.</p>
+    {% else %}
+        <table>
+        {% for prediction in predictions %}
+            <tr>
+                <td>{{ prediction.player.player_name }}</td>
+                <td>{{ prediction.player_prediction1 }}</td>
+                <td>{{ prediction.player_prediction2 }}</td>
+                <td>{{ prediction.player_prediction3 }}</td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}

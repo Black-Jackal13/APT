@@ -58,6 +58,39 @@ def fetch_race_data(race_name: str, stage: str, race_year: str) -> list[str]:
     return top_ten_finishers
 
 
+def fetch_startlist(race_name: str, race_year: str) -> list[str]:
+    website_link = f"https://www.procyclingstats.com/race/{race_name.lower().replace(' ', '-')}/{race_year}/startlist"
+
+    response = requests.get(website_link)
+    soup = bs4.BeautifulSoup(response.text, "html.parser")
+
+    start_list_section = soup.find("ul", {"class": "startlist_v4"})
+    riders = []
+
+    for team in start_list_section.find_all("li"):
+
+        riders_cont = team.find("div", {"class": "ridersCont"})
+        if riders_cont is None:
+            continue
+
+        rider_list = riders_cont.find("ul")
+        if rider_list is None:
+            continue
+
+        for rider_item in rider_list.find_all("li"):
+            rider_tag = rider_item.find("a")
+            if rider_tag:
+                rider_name = rider_tag.text.strip().split(" ")[0].capitalize()
+                riders.append(rider_name)
+
+    riders.sort()
+
+    for rider in riders:
+        print(rider)
+
+    return riders
+
+
 def scoring_algorithm(
         tier: str,  # (GOLD, SILVER or BRONZE)
         predicted_finishers: dict[str, tuple[str, ]],
@@ -255,3 +288,7 @@ def player_prediction_history(player: Player) -> dict[str: str | int]:
     ]
 
     return player_race_details
+
+
+if __name__ == '__main__':
+    fetch_startlist("Omloop Het Nieuwsblad", 2025)

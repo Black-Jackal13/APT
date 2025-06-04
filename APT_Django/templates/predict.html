@@ -9,6 +9,7 @@
 
             <label>First</label><br>
             <select name="prediction_1">
+                <option selected="selected" value="Not Chosen"></option>
                 {% for racer in racers %}
                     <option value="{{ racer }}">{{ racer }}</option>
                 {% endfor %}
@@ -16,6 +17,7 @@
 
             <label>Second</label><br>
             <select name="prediction_2">
+                <option selected="selected" value="Not Chosen"></option>
                 {% for racer in racers %}
                     <option value="{{ racer }}">{{ racer }}</option>
                 {% endfor %}
@@ -23,6 +25,7 @@
 
             <label>Third<br></label>
             <select name="prediction_3">
+                <option selected="selected" value="Not Chosen"></option>
                 {% for racer in racers %}
                     <option value="{{ racer }}">{{ racer }}</option>
                 {% endfor %}

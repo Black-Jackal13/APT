@@ -80,7 +80,15 @@ def fetch_startlist(race_name: str, race_year: str) -> list[str]:
         for rider_item in rider_list.find_all("li"):
             rider_tag = rider_item.find("a")
             if rider_tag:
-                rider_name = rider_tag.text.strip().split(" ")[0].capitalize()
+                rider_full_name = rider_tag.text
+                rider_names = rider_full_name.strip().split(" ")
+
+                rider_name = ""
+                for name in rider_names:
+                    if name == name.upper():
+                        rider_name += name + " "
+
+                rider_name = rider_name.strip().capitalize()
                 riders.append(rider_name)
 
     riders.sort()

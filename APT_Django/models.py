@@ -73,6 +73,7 @@ class SeasonScore(models.Model):
     season = models.ForeignKey(RaceSeason, on_delete=models.CASCADE)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score = models.IntegerField()
+    results_notified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.player.player_name + " " + str(self.score)
@@ -82,6 +83,7 @@ class CupScore(models.Model):
     cup = models.ForeignKey(RaceCup, on_delete=models.CASCADE)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score = models.IntegerField()
+    results_notified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.player.player_name + " " + str(self.score)

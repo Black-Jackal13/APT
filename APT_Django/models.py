@@ -25,6 +25,7 @@ class Race(models.Model):
     race_name = models.CharField(max_length=100)
     race_date = models.DateField()
     race_tier = models.IntegerField(default=1)  # 1 is Gold, 2 is Silver, 3 is Bronze
+    race_predictions_notified = models.BooleanField(default=False)
     race_predictions_closed = models.BooleanField(default=False)
     race_finished = models.BooleanField(default=False)
 

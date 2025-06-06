@@ -91,6 +91,7 @@ class RaceScore(models.Model):
     race = models.ForeignKey(Race, on_delete=models.CASCADE)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score = models.IntegerField()
+    results_notified = models.BooleanField(default=False)
 
     def __str__(self):
         return self.player.player_name + " " + str(self.score)

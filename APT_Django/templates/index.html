@@ -12,13 +12,15 @@
                 <tr>
                     <th>Player</th>
                     <th>Score</th>
+                    <th>Season</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for leader in leaders %}
                     <tr>
-                        <td class="scoreboard-playername">{{ leader.player.player_name }}</td>
+                        <td>{{ leader.name }}</td>
                         <td>{{ leader.score }}</td>
+                        <td>{{ leader.season }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

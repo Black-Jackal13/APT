@@ -1,0 +1,57 @@
+{% extends "base_template.html" %}
+{% block content %}
+    <h1>{{ cup }} - Results</h1>
+    <h2>Standings</h2>
+    {% if not standings %}
+        No standings found.
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>Position</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for player in standings %}
+                <tr>
+                    <td>{{ player.place }}</td>
+                    <td>{{ player.player }}</td>
+                    <td>{{ player.score }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <h2>Races</h2>
+    {% if not races %}
+        No races found.
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>Race</th>
+                {% for player in players %}
+                    <th><a href="/players/{{ player.player_name }}">{{ player.player_name }}</a></th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for race in races %}
+                <tr>
+                <td>
+                    <a href="/results/{{ race.race.race_season.race_season_name }}/{{ race.race.race_cup.cup_name }}/{{ race.race.race_name }}">
+                        {{ race.race.race_name }}
+                    </a>
+                </td>
+                {% for score in race.scores %}
+                    <td>{{ score }}</td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+    <h1>{{ season }} - "{{ race }}"</h1>
+
+    <h2>Top 10 Finishers</h2>
+    {% if not finishers %}
+        No finishers found.
+    {% else %}
+        <ol>
+            {% for finisher in finishers %}
+                <li>{{ finisher }}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+
+    <h2>Scores</h2>
+    {% if not participated %}
+        No participated players found.
+    {% else %}
+        <table>
+            <thead>
+            <tr>
+                <th>Player</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for player, score in participated %}
+                <tr>
+                    <td><a href="/players/{{ player }}">{{ player }}</a></td>
+                    <td>{{ score }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

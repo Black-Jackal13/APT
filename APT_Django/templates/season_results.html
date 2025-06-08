@@ -9,7 +9,7 @@
         <table>
             <thead>
             <tr>
-                <th>Position</th>
+                <th>#</th>
                 <th>Name</th>
                 <th>Score</th>
             </tr>
@@ -17,8 +17,8 @@
             <tbody>
             {% for player in standings %}
                 <tr>
-                    <td>{{ player.position }}</td>
-                    <td>{{ player.player.player_name }}</td>
+                    <td>{{ player.place }}</td>
+                    <td>{{ player.player }}</td>
                     <td>{{ player.score }}</td>
                 </tr>
             {% endfor %}

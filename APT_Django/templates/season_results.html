@@ -43,7 +43,7 @@
         <ul>
             {% for race in races %}
                 {% if race.race_finished %}
-                    <li><a href="/results/{{ race.race_season }}/{{ race.race_name }}">
+                    <li><a href="/results/{{ race.race_season }}/{{ race.race_cup }}/{{ race.race_name }}">
                         {{ race.race_name }}</a> (Finished)
                     </li>
                 {% else %}

@@ -14,23 +14,28 @@
                 <th>Date</th>
                 <th>Days to Deadline</th>
                 <th>Prediction Link</th>
+                <th>View Predictions</th>
             </tr>
             </thead>
             <tbody>
             {% for race in races %}
-                {% if not race.race_finished %}
-                    <tr>
-                        <!-- Race Details -->
-                        <td>{{ race.race_name }}</td>
-                        <td>{{ race.race_date }}</td>
-                        <td>{{ race.time_to }}</td>
-                        <td>
-                            <a href="/predictions/predict/{{ race.race_season }}/{{ race.race_cup }}
-                                    /{{ race.race_name }}"
-                            target="_blank">{{ race.race_name }}</a>
-                        </td>
-                    </tr>
-                {% endif %}
+                <tr>
+                    <!-- Race Details -->
+                    <td>{{ race.race_name }}</td>
+                    <td>{{ race.race_date }}</td>
+                    <td>{{ race.time_to }}</td>
+                    <td>
+                        <a href="/predictions/predict/{{ race.race_season }}/{{ race.race_cup }}/{{ race.race_name }}"
+                           target="_blank">
+                            {{ race.race_name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/predictions/view/{{ race.race_season }}/{{ race.race_cup }}/{{ race.race_name }}">
+                            View Predictions
+                        </a>
+                    </td>
+                </tr>
             {% endfor %}
             </tbody>
         </table>

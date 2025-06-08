@@ -1,5 +1,7 @@
 import bs4
 import requests
+import datetime
+
 from APT_Django.models import Player, Race, RaceCup, RaceSeason
 
 
@@ -298,5 +300,13 @@ def player_prediction_history(player: Player) -> dict[str: str | int]:
     return player_race_details
 
 
-if __name__ == '__main__':
-    fetch_startlist("Omloop Het Nieuwsblad", 2025)
+def time_to_deadline(race: Race) -> datetime.timedelta:
+    """
+    Findes the deadline for a specific race.
+    :param race: Target Race object
+    :return: Timedelta of deadline
+    """
+    deadline = datetime.datetime(race.race_date.year, race.race_date.month, race.race_date.day, 8)
+    time_to = deadline - datetime.datetime.now()
+
+    return time_to

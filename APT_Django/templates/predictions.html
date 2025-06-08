@@ -12,6 +12,7 @@
             <tr>
                 <th>Race</th>
                 <th>Date</th>
+                <th>Days to Deadline</th>
                 <th>Prediction Link</th>
             </tr>
             </thead>
@@ -22,6 +23,7 @@
                         <!-- Race Details -->
                         <td>{{ race.race_name }}</td>
                         <td>{{ race.race_date }}</td>
+                        <td>{{ race.time_to }}</td>
                         <td>
                             <a href="/predictions/predict/{{ race.race_season }}/{{ race.race_cup }}
                                     /{{ race.race_name }}"

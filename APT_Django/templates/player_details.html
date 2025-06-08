@@ -8,14 +8,10 @@
             <td>Email</td>
             <td>{{ player.player_email }}</td>
         </tr>
-        <tr>
-            <td>Score</td>
-            <td style="text-align: right">{{ score }}</td>
-        </tr>
         </tbody>
     </table>
     <h2>Predictions</h2>
-    {% if not predictions %}
+    {% if not history %}
         No predictions found.
     {% else %}
         <table>
@@ -25,12 +21,26 @@
                 <th>First</th>
                 <th>Second</th>
                 <th>Third</th>
+                <th>Tier</th>
                 <th>Score</th>
             </tr>
             </thead>
-            {% for prediction in predictions %}
-                <li>{{ prediction.prediction_1 }} - {{ prediction.prediction_2 }}</li>
+            <tbody>
+            {% for race in history %}
+                <tr>
+                    <td>
+                        <a href="/predictions/view/{{ race.race.race_season }}/{{ race.race.race_cup }}/{{ race.race.race_name }}">
+                            {{ race.race.race_name }}
+                        </a>
+                    </td>
+                    <td>{{ race.prediction1 }}</td>
+                    <td>{{ race.prediction2 }}</td>
+                    <td>{{ race.prediction3 }}</td>
+                    <td>{{ race.tier }}</td>
+                    <td>{{ race.score }}</td>
+                </tr>
             {% endfor %}
+            </tbody>
         </table>
     {% endif %}
 {% endblock %}

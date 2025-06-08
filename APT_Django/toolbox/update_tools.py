@@ -264,3 +264,5 @@ def full_refresh() -> None:
     """
     update_status()
     update_scores()
+
+    print("Refreshing and Updating Server...")

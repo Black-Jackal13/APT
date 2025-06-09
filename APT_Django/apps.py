@@ -9,7 +9,7 @@ class AptDjangoConfig(AppConfig):
     name = "APT_Django"
 
     def ready(self):
-        if os.environ.get("RUN_MAIN") != "true":
+        if os.environ.get("RUN_MAIN") == "true":
             return
 
         print("Autorefresh starting...")

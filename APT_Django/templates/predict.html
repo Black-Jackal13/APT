@@ -4,6 +4,7 @@
     <h1>Predict for {{ season }}: {{ cup }} - {{ race }}</h1>
     <div class="form_container">
         <form action="/predictions/predict/{{ season }}/{{ cup }}/{{ race }}" method="POST">
+            {% csrf_token %}
             <label>Name</label><br>
             {{ form.player_name }}<br>
 

@@ -5,6 +5,7 @@
     <p>{{ info }}</p>
     <div class="form_container">
         <form action="/register" method="POST">
+            {% csrf_token %}
             <label>Username</label><br>
             {{ form.username }}<br>
 

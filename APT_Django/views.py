@@ -48,7 +48,6 @@ def available_predictions(request):
     return HttpResponse(page.render({"races": predictions}))
 
 
-@csrf_exempt
 def make_race_prediction(request, season, cup, race):
     if request.method == "POST":
         form = EnterPrediction(request.POST)
@@ -262,7 +261,6 @@ def player_details(request, player):
     return HttpResponse(page.render({"player": player, "history": prediction_history}))
 
 
-@csrf_exempt
 def register_player(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
